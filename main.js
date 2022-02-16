@@ -25,6 +25,7 @@ document.getElementById('calculate-btn').addEventListener('click',function(){
 
 
 document.getElementById('saving-btn').addEventListener('click',function(){
+
     const save = document.getElementById('saving-field');
     const saveValue = parseInt(save.value);
     const income = document.getElementById('income');
@@ -32,17 +33,12 @@ document.getElementById('saving-btn').addEventListener('click',function(){
 
     const savingAmount = (incomeValue * saveValue) /100  ;
 
-
     const totalSaving = document.getElementById('saving-amount');
     totalSaving.innerText = savingAmount;
-
-
+    
     const remainingAmount =  document.getElementById('remaining-amount');
-    const remainingAmountValue = savingAmount -  balance;
+    const remainingAmountValue = savingAmount - balance.innerText;
     remainingAmount.innerText = parseFloat(remainingAmountValue) ;
     console.log(remainingAmountValue)
-
-
-
-    
+  
 })
