@@ -1,4 +1,4 @@
-document.getElementById('calculate').addEventListener('click',function(){
+document.getElementById('calculate-btn').addEventListener('click',function(){
 
     const food = document.getElementById('food');
     const foodValue = parseFloat( food.value);
@@ -21,4 +21,28 @@ document.getElementById('calculate').addEventListener('click',function(){
     const balanceText = document.getElementById('balance');
 
     balanceText.innerText = balance;
+})
+
+
+document.getElementById('saving-btn').addEventListener('click',function(){
+    const save = document.getElementById('saving-field');
+    const saveValue = parseInt(save.value);
+    const income = document.getElementById('income');
+    const incomeValue = parseInt(income.value);
+
+    const savingAmount = (incomeValue * saveValue) /100  ;
+
+
+    const totalSaving = document.getElementById('saving-amount');
+    totalSaving.innerText = savingAmount;
+
+
+    const remainingAmount =  document.getElementById('remaining-amount');
+    const remainingAmountValue = savingAmount -  balance;
+    remainingAmount.innerText = parseFloat(remainingAmountValue) ;
+    console.log(remainingAmountValue)
+
+
+
+    
 })
