@@ -1,13 +1,14 @@
 *{
     margin: 0%;
     padding: 0%;
-    font-family: 'Oswald', sans-serif;
-    
+    font-family: 'Oswald', sans-serif;   
 }
+
 body{
     overflow-x: hidden;
 
 }
+
 .header-text-color{
     color: brown;
     font-size: 60px;
