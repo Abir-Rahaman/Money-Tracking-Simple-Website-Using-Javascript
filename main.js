@@ -1,52 +1,87 @@
 document.getElementById('calculate-btn').addEventListener('click',function(){  
     
-     GetTotal()  //calling the function
+    GetTotal()  //calling the function
 })
 
-// food , rent , cloth total handling using one function
+// food , rent , cloth total handling using by one function
 
-function getTotal(amount){
+var flag = 0;
+
+function getValue(amount){
+  
+   const totalInput = document.getElementById(amount);
    
-    let totalInput = document.getElementById(amount);
-    let totalValue = parseFloat(totalInput.value) ;
-    return totalValue;
+   let totalValue = parseFloat(totalInput.value) ;
+
+   //error handling  
+   if(totalValue >= 0)
+   {
+       return totalValue;
+   }
+   else{
+       flag = 1;
+       alert(amount+' is not valid.')
+       return 0;
+   }
 
 }
 
 function GetTotal(){
-    let food = getTotal('food');
-    let rent = getTotal('rent');
-    let cloth = getTotal('cloth');
-    let totalAmount = food+rent+cloth;
-    let totalExpenses =document.getElementById('total-expenses');
-    totalExpenses.innerText = parseFloat(totalAmount) ;
 
-    const income = document.getElementById('income');
+   const food = getValue('food');
+   const rent = getValue('rent');
+   const cloth = getValue('cloth');
 
-    const balance = income.value - totalAmount;
+   const totalAmount = parseFloat(food+rent+cloth) ;
+   const totalExpenses =document.getElementById('total-expenses');
+   
+   const income = document.getElementById('income'); 
+   const balance = income.value - totalAmount;
+   const balanceText = document.getElementById('balance');
 
-    const balanceText = document.getElementById('balance');
-
-    balanceText.innerText = balance;
+    //error handling
+   if(balance<0)
+   {
+       alert('your income is lesser then your income');
+       flag = 1;
+   }
+   if(flag!=1)
+   {
+       totalExpenses.innerText = parseFloat(totalAmount);
+       balanceText.innerText = balance;
+   }
 }
 
 // Saving Amount & Remaining Balance section
 
 document.getElementById('saving-btn').addEventListener('click',function(){
+   const saveValue = getValue('saving-field');
 
-    const save = document.getElementById('saving-field');
-    const saveValue = parseInt(save.value);
-    const income = document.getElementById('income');
-    const incomeValue = parseInt(income.value);
+   //error handling
+   if(saveValue<100)
+   {
+       alert('you can not save more than 100%')
+       flag = 1;
+   }
 
-    const savingAmount = (incomeValue * saveValue)/100 ;
+   const incomeValue = getValue('income');
 
-    const totalSaving = document.getElementById('saving-amount');
-    totalSaving.innerText = savingAmount;
-    
-    const remainingAmount =  document.getElementById('remaining-amount');
-    const remainingAmountValue = savingAmount - balance.innerText;
-    remainingAmount.innerText = parseFloat(remainingAmountValue) ;
-    console.log(remainingAmountValue)
-  
-})
+   const savingAmount = (incomeValue * saveValue)/100 ;
+
+   const totalSaving = document.getElementById('saving-amount');
+   
+   const remainingAmount =  document.getElementById('remaining-amount');
+   const remainingAmountValue = savingAmount - balance.innerText;
+
+   //error handling
+   if(flag!=1)
+   {
+       remainingAmount.innerText = parseFloat(remainingAmountValue) ;
+       totalSaving.innerText = savingAmount;
+
+   }
+   console.log(remainingAmountValue)
+ 
+});
+
+
