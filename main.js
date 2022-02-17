@@ -58,7 +58,7 @@ document.getElementById('saving-btn').addEventListener('click',function(){
    const saveValue = getValue('saving-field');
 
    //error handling
-   if(saveValue<100)
+   if(saveValue>100)
    {
        alert('you can not save more than 100%')
        flag = 1;
