@@ -1,28 +1,36 @@
-document.getElementById('calculate-btn').addEventListener('click',function(){
+document.getElementById('calculate-btn').addEventListener('click',function(){  
+    
+     GetTotal()  //calling the function
+})
 
-    const food = document.getElementById('food');
-    const foodValue = parseFloat( food.value);
-    const rent = document.getElementById('rent');
-    const rentValue =parseFloat(rent.value) ;
-    const cloth = document.getElementById('cloth');
-    const clothValue = parseFloat(cloth.value);
+// food , rent , cloth total handling using one function
 
-    const total =  foodValue+rentValue+clothValue;
+function getTotal(amount){
+   
+    let totalInput = document.getElementById(amount);
+    let totalValue = parseFloat(totalInput.value) ;
+    return totalValue;
 
-    let Expenses = document.getElementById('total-expenses');
+}
 
-    Expenses.innerText = total;
+function GetTotal(){
+    let food = getTotal('food');
+    let rent = getTotal('rent');
+    let cloth = getTotal('cloth');
+    let totalAmount = food+rent+cloth;
+    let totalExpenses =document.getElementById('total-expenses');
+    totalExpenses.innerText = parseFloat(totalAmount) ;
 
     const income = document.getElementById('income');
-    const incomeValue = parseFloat(income.value);
 
-    const balance = incomeValue - total;
+    const balance = income.value - totalAmount;
 
     const balanceText = document.getElementById('balance');
 
     balanceText.innerText = balance;
-})
+}
 
+// Saving Amount & Remaining Balance section
 
 document.getElementById('saving-btn').addEventListener('click',function(){
 
@@ -31,7 +39,7 @@ document.getElementById('saving-btn').addEventListener('click',function(){
     const income = document.getElementById('income');
     const incomeValue = parseInt(income.value);
 
-    const savingAmount = (incomeValue * saveValue) /100  ;
+    const savingAmount = (incomeValue * saveValue)/100 ;
 
     const totalSaving = document.getElementById('saving-amount');
     totalSaving.innerText = savingAmount;
